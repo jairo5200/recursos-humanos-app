@@ -15,8 +15,12 @@ export default function ListadoEmpleados() {
 
     const cargarEmpleados = async () => {
         const resultado = await axios.get(urlBase);
-        console.log(resultado.data);
         setEmpleados(resultado.data);
+    }
+
+    const eliminarEmpleado = async (idEmpleado) => {
+        await axios.delete(urlBase + idEmpleado);
+        cargarEmpleados();
     }
 
     return (
@@ -50,7 +54,12 @@ export default function ListadoEmpleados() {
                             fixedDecimalScale>
                         </NumericFormat>
                         </td>
-                        <td><Link className='btn btn-warning btn-sm me-3' to={`/editar/${empleado.idEmpleado}`}>Editar</Link><button className='btn btn-danger btn-sm'>Eliminar</button></td>
+                        <td>
+                            <Link className='btn btn-warning btn-sm me-3' to={`/editar/${empleado.idEmpleado}`}>Editar</Link>
+                            <button className='btn btn-danger btn-sm' onClick={() => eliminarEmpleado(empleado.idEmpleado)}>
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                     ))
                     }
