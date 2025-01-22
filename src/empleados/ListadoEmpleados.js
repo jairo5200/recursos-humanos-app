@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format';
+import { Link } from 'react-router-dom';
 
 export default function ListadoEmpleados() {
   
@@ -30,6 +31,7 @@ export default function ListadoEmpleados() {
                         <th scope="col">Empleado</th>
                         <th scope="col">Departamento</th>
                         <th scope="col">Sueldo</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +49,8 @@ export default function ListadoEmpleados() {
                             decimalScale={2}
                             fixedDecimalScale>
                         </NumericFormat>
-                            </td>
+                        </td>
+                        <td><Link className='btn btn-warning btn-sm me-3' to={`/editar/${empleado.idEmpleado}`}>Editar</Link><button className='btn btn-danger btn-sm'>Eliminar</button></td>
                     </tr>
                     ))
                     }
